@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/template/template.egg-info
+writing ../../build/template/template.egg-info/PKG-INFO
+writing dependency_links to ../../build/template/template.egg-info/dependency_links.txt
+writing entry points to ../../build/template/template.egg-info/entry_points.txt
+writing requirements to ../../build/template/template.egg-info/requires.txt
+writing top-level names to ../../build/template/template.egg-info/top_level.txt
+writing manifest file '../../build/template/template.egg-info/SOURCES.txt'
+reading manifest file '../../build/template/template.egg-info/SOURCES.txt'
+writing manifest file '../../build/template/template.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/otischung/DATA/workspace/ros2_ws/build/template/build
+creating /home/otischung/DATA/workspace/ros2_ws/build/template/build/lib
+creating /home/otischung/DATA/workspace/ros2_ws/build/template/build/lib/template
+copying template/template.py -> /home/otischung/DATA/workspace/ros2_ws/build/template/build/lib/template
+copying template/__init__.py -> /home/otischung/DATA/workspace/ros2_ws/build/template/build/lib/template
+running install
+running install_lib
+creating /home/otischung/DATA/workspace/ros2_ws/install/template/lib/python3.10/site-packages/template
+copying /home/otischung/DATA/workspace/ros2_ws/build/template/build/lib/template/template.py -> /home/otischung/DATA/workspace/ros2_ws/install/template/lib/python3.10/site-packages/template
+copying /home/otischung/DATA/workspace/ros2_ws/build/template/build/lib/template/__init__.py -> /home/otischung/DATA/workspace/ros2_ws/install/template/lib/python3.10/site-packages/template
+byte-compiling /home/otischung/DATA/workspace/ros2_ws/install/template/lib/python3.10/site-packages/template/template.py to template.cpython-310.pyc
+byte-compiling /home/otischung/DATA/workspace/ros2_ws/install/template/lib/python3.10/site-packages/template/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/otischung/DATA/workspace/ros2_ws/install/template/share/ament_index
+creating /home/otischung/DATA/workspace/ros2_ws/install/template/share/ament_index/resource_index
+creating /home/otischung/DATA/workspace/ros2_ws/install/template/share/ament_index/resource_index/packages
+copying resource/template -> /home/otischung/DATA/workspace/ros2_ws/install/template/share/ament_index/resource_index/packages
+copying package.xml -> /home/otischung/DATA/workspace/ros2_ws/install/template/share/template
+running install_egg_info
+Copying ../../build/template/template.egg-info to /home/otischung/DATA/workspace/ros2_ws/install/template/lib/python3.10/site-packages/template-0.0.0-py3.10.egg-info
+running install_scripts
+Installing robot_node script to /home/otischung/DATA/workspace/ros2_ws/install/template/lib/template
+writing list of installed files to '/home/otischung/DATA/workspace/ros2_ws/build/template/install.log'

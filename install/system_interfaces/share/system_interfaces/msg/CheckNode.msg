@@ -1,3 +1,0 @@
-string node_name
-int32 seconds
-uint32 nanoseconds

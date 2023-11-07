@@ -1,17 +1,17 @@
-#!/usr/bin/env python3
 from pros_library.pros_node import *
-# from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Float32MultiArray
+import rclpy
+from std_msgs.msg import String
+from rclpy.node import Node
 """
   Make sure you have built all the packages that are dpenedent.
   e.g. "system_interfaces"
   If you want to use other packages, you need to include them by yourself.
   After include the packages, you have to follow the steps provided by ROS2 to add dependencies in "setup.py" and "package.xml"
   Wish you have a good coding experience!!
-"""
+""" 
 
-
-class robotCar(ProsNode):
+class CenterNode(ProsNode):
     def __init__(self, node_name, **kwargs):
         super().__init__(node_name, **kwargs)
         """
@@ -19,54 +19,35 @@ class robotCar(ProsNode):
         """
         super().trigger_configure()
         super().trigger_activate()
-        self.publisher_ = self.create_publisher(
-            Float32MultiArray, "robot_news1", 10)
-        # self.pose = PoseStamped()
-        self.get_logger().info("Hello")
-        self.front_right = 0
-        self.front_left = 0
-        self.back_right = 0
-        self.back_left = 0
-        data = [self.front_right, self.front_left,
-                self.back_right, self.back_left]
+        print("center start")
+        self.subsvriber_ = self.create_subscription(String, "unity2Ros", self.callback_robot_news, 10)
+        self.get_logger().info("Data receive from unity")
+        self.publisher_ros2unity = self.create_publisher(Float32MultiArray,"ros2Unity", 10)
+        # self.timer_ = self.create_timer(0.5, self.publish_news)
+        self.get_logger().info("Unity publisher")
 
-        while rclpy.ok():
-            key = str(input("Press a key and press Enter: "))
+        self.publisher_ros2Ai = self.create_publisher(String, 'ros2Ai', 10)
 
-            if key == "w":
-                self.back_right = 2000
-                self.back_left = 2000
-                self.front_right = 2000
-                self.front_left = 2000
-            elif key == "s":
-                self.back_right = -2000
-                self.back_left = -2000
-                self.front_right = -2000
-                self.front_left = -2000
-            elif key == "a":
-                self.front_right = -2000
-                self.front_left = 2000
-                self.back_right = -2000
-                self.back_left = 2000
-            elif key == "d":
-                self.front_right = 2000
-                self.front_left = -2000
-                self.back_right = 2000
-                self.back_left = -2000
-            else:
-                self.back_right = 0
-                self.back_left = 0
-                self.front_right = 0
-                self.front_left = 0
+        self.subscriber_fromAi = self.create_subscription(Float32MultiArray, "Ai2ros", self.callback_fromAi, 10)
 
-            data = [float(self.front_right), float(self.front_left),
-                    float(self.back_right), float(self.back_left)]
+    def callback_fromAi(self, msg):
+        self.aiState = msg.data
+        self.ros2unity_msg = Float32MultiArray()
+        self.ros2unity_msg.data = self.aiState
+        print(self.ros2unity_msg.data)
+        self.publisher_ros2unity.publish(self.ros2unity_msg)
 
-            self.publisher_.publish(Float32MultiArray(data=data))
-            # self.get_logger().info('Published: %s' % 'hello')
+
+    def callback_robot_news(self, msg):
+        self.unityState = msg.data
+        
+        self.ros2Ai_msg = String()
+        self.ros2Ai_msg.data = self.unityState
+        self.publisher_ros2Ai.publish(self.ros2Ai_msg)
+
 
     def on_configure(self, state: State):
-        self.get_logger().info("on_configure() is called.!!!!!!!!!!!!!!!")
+        self.get_logger().info("on_configure() is called.")
         """
         TODO: configure
         """
@@ -91,14 +72,12 @@ class robotCar(ProsNode):
         """
         TODO: Clean all the variables.
         """
-        return TransitionCallbackReturn.SUCCESS
-
+        return TransitionCallbackReturn.SUCCESS 
 
 def main():
     rclpy.init()
-    node = robotCar("robotcar")
+    node = CenterNode("center")
     run(node)
-    rclpy.shutdown()
 
 
 if __name__ == '__main__':

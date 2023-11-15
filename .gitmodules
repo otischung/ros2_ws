@@ -1,3 +1,6 @@
 [submodule "src/rplidar_ros2"]
 	path = src/rplidar_ros2
 	url = https://github.com/babakhani/rplidar_ros2
+[submodule "src/ROS-TCP-Endpoint"]
+	path = src/ROS-TCP-Endpoint
+	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint

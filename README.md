@@ -4,9 +4,14 @@
 
 ## Submodule
 
-The folder `src/rplidar_ros2` is cloned by [GitHub](https://github.com/babakhani/rplidar_ros2.git) page.
+We have these submodules shown below
 
-We do not own this source code mentioned above.
+| Submodule              | Reference GitHub page                                  |
+| ---------------------- | ------------------------------------------------------ |
+| `src/rplidar_ros2`     | https://github.com/babakhani/rplidar_ros2.git          |
+| `src/ROS-TCP-Endpoint` | https://github.com/Unity-Technologies/ROS-TCP-Endpoint |
+
+We do not own these source code mentioned above.
 
 
 
